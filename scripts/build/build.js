@@ -149,11 +149,14 @@ async function buildFile(
   const prettierConfig = {parser: 'babel'};
 
   // Transform source file using Babel
-  const transformed = prettier.format(
-    (await babel.transformFileAsync(file, getBabelConfig(packageName))).code,
-    prettierConfig,
-  );
+  // const transformed = prettier.format(
+  //   (await babel.transformFileAsync(file, getBabelConfig(packageName))).code,
+  //   prettierConfig,
+  // );
+  const babelOutput = await babel.transformFileAsync(file, { ...getBabelConfig(packageName), sourceMaps: true });
+  const transformed = babelOutput.code + `\n//# sourceMappingURL=${path.basename(buildPath)}.map`;
   await fs.writeFile(buildPath, transformed);
+  await fs.writeFile(buildPath + '.map', JSON.stringify(babelOutput.map, null, 2));
 
   // Translate source Flow types for each type definition target
   if (/@flow/.test(source)) {
