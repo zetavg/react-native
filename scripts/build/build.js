@@ -156,22 +156,22 @@ async function buildFile(
   await fs.writeFile(buildPath, transformed);
 
   // Translate source Flow types for each type definition target
-  if (/@flow/.test(source)) {
-    await Promise.all([
-      emitFlowDefs
-        ? fs.writeFile(
-            buildPath + '.flow',
-            await translate.translateFlowToFlowDef(source, prettierConfig),
-          )
-        : null,
-      emitTypeScriptDefs
-        ? fs.writeFile(
-            buildPath.replace(/\.js$/, '') + '.d.ts',
-            await translate.translateFlowToTSDef(source, prettierConfig),
-          )
-        : null,
-    ]);
-  }
+  // if (/@flow/.test(source)) {
+  //   await Promise.all([
+  //     emitFlowDefs
+  //       ? fs.writeFile(
+  //           buildPath + '.flow',
+  //           await translate.translateFlowToFlowDef(source, prettierConfig),
+  //         )
+  //       : null,
+  //     emitTypeScriptDefs
+  //       ? fs.writeFile(
+  //           buildPath.replace(/\.js$/, '') + '.d.ts',
+  //           await translate.translateFlowToTSDef(source, prettierConfig),
+  //         )
+  //       : null,
+  //   ]);
+  // }
 
   logResult({copied: true});
 }

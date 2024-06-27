@@ -24,6 +24,7 @@ const config /*: BabelCoreOptions */ = {
         targets: {
           node: TARGET_NODE_VERSION,
         },
+        modules: false,
       },
     ],
   ],
