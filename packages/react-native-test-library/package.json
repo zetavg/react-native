@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "yarn clean && babel --out-dir lib src",
-    "clean": "rimraf lib",
+    "clean": "rm -rf lib",
     "codegen": "npx react-native codegen",
     "prepare": "yarn run codegen && yarn run build"
   },
