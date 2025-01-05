@@ -10,7 +10,6 @@
     "@babel/preset-env": "^7.25.3",
     "@babel/preset-flow": "^7.20.0"
   },
-  "dependencies": {},
   "main": "src/index.js",
   "peerDependencies": {
     "jest": "^29.7.0"
